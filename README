@@ -1,0 +1,8 @@
+Prof. Léo - Exemplo básico de conexão com o MongoDb
+
+1º instale o pacote do mongo db (utilize o gerenciador de preferência, utilizarei o NPM aqui)
+
+    npm install mongodb
+
+
+2º 

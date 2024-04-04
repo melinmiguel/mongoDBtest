@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conectar ao MongoDB Atlas</title>
+</head>
+<body>
+    <h1>Conectar ao MongoDB Atlas</h1>
+
+    <script>
+        // Substitua 'SUA_STRING_DE_CONEXÃO_AQUI' pela sua própria string de conexão com o MongoDB Atlas
+        const uri = 'mongodb+srv://bancoBQpw3:a1a2a3a4@cluster0.edcsh1t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
+        async function inserirDados() {
+            const name = 'Alice';
+            const age = 30;
+
+            try {
+                console.log('tentando')
+                const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+                await client.connect();
+                console.log("Conectado ao MongoDB Atlas");
+
+                const db = client.db('test'); // Nome do banco de dados
+                const collection = db.collection('usuarios'); // Nome da coleção
+
+                const result = await collection.insertOne({ name, age });
+                console.log("Dados inseridos:", result.insertedId);
+
+                await client.close();
+            } catch (err) {
+                console.error("Erro ao conectar ao MongoDB Atlas:", err);
+            }
+        }
+
+        inserirDados();
+    </script>
+</body>
+</html>
